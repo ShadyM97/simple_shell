@@ -9,7 +9,6 @@ void shell(void)
 	char *buffer = NULL;
 	size_t bufsize = 32;
 	char **argv;
-	int argc = 0;
 	pid_t pid;
 
 	while (1)
