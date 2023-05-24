@@ -46,11 +46,11 @@ char **parse_string(char *buffer)
 	}
 	argv = malloc(argc * sizeof(char *));
 	i = 0;
-	token = strtok(buffer_copy, " \n");
+	token = strtok(buffer_copy, "\n");
 	while (token)
 	{
 		argv[i] = token;
-		token = strtok(NULL, " \n");
+		token = strtok(NULL, "\n");
 		i++;
 	}
 	return (argv);
