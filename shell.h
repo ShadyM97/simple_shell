@@ -7,6 +7,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+extern char **environ;
+
 char **parse_string(char *buffer);
 void shell(void);
 

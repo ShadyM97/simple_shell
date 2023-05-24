@@ -21,7 +21,7 @@ void shell(void)
 			printf("$ ");
 			getline(&buffer, &bufsize, stdin);
 			argv = parse_string(buffer);
-			if (execve(argv[0], argv, NULL) == -1)
+			if (execve(argv[0], argv, environ) == -1)
 			{
 				perror("Error:");
 			}
