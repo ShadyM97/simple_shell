@@ -1,6 +1,29 @@
 #include "shell.h"
 
 /**
+  * _strdup - duplicates the string
+  * @src: pointer to the source
+  * Return: duplicated string
+  */
+
+char *_strdup(char *src)
+{
+	char *str;
+	char *p;
+	int len = 0;
+
+	while (src[len])
+		len++;
+	str = malloc(len + 1);
+	p = str;
+	while (*src)
+		*p++ = *src++;
+	*p = '\0';
+	return (str);
+}
+
+
+/**
   * parse_string - parse the string receiveed from stdin
   * @buffer: string buffer
   * Return: parsed array
@@ -8,11 +31,13 @@
 
 char **parse_string(char *buffer)
 {
-	char *token;
-	char **argv;
+	char *buffer_copy = NULL;
+	char *token = NULL;
+	char **argv = NULL;
 	int argc = 0;
 	int i;
 
+	buffer_copy = _strdup(buffer);
 	token = strtok(buffer, " \n");
 	while (token)
 	{
@@ -21,14 +46,13 @@ char **parse_string(char *buffer)
 	}
 	argv = malloc(argc * sizeof(char *));
 	i = 0;
-	token = strtok(buffer, " \n");
+	token = strtok(buffer_copy, " \n");
 	while (token)
 	{
 		argv[i] = token;
 		token = strtok(NULL, " \n");
 		i++;
 	}
-	argv[i] = NULL;
 	return (argv);
 }
 
