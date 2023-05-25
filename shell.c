@@ -21,7 +21,7 @@ int main(__attribute__((unused)) int argc, char **argv, char **env)
 	char *NAME = argv[0];
 	int atty_is = isatty(0);
 
-	signal(SIGINT, SIG_IGN);
+	/*signal(SIGINT, SIG_IGN);*/
 	while (1)
 	{
 		errorcount++;
@@ -30,6 +30,7 @@ int main(__attribute__((unused)) int argc, char **argv, char **env)
 		bytes_read = getline(&user_input, &nbytes, stdin);
 		if (bytes_read == -1)
 		{
+			write(STDOUT_FILENO, "\n", 1);
 			free(user_input);
 			exit(exitcode);
 		}
