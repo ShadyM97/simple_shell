@@ -24,7 +24,7 @@ void free_array(char **array);
 int _atoi(char *s);
 void print_number(int n);
 int arg_counter(char *user_input);
-char **parse_input(char *user_input, char **path_array, char *NAME);
+char **parse_input(char *user_input, char **path_array);
 int _strlen(char *str);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
