@@ -32,9 +32,9 @@ int arg_counter(char *user_input)
   * Return: an array of arguments
   */
 
-char **parse_input(char *user_input, char **path_array)
+char **parse_input(char *user_input, char **path_array, char *NAME)
 {
-	char **commands, *token;
+	char **commands, *token, *dir_path = NULL;
 	int args = 1, i = 0;
 
 	args = arg_counter(user_input);
@@ -45,7 +45,7 @@ char **parse_input(char *user_input, char **path_array)
 		return (NULL);
 	}
 	token = strtok(user_input, "\n ");
-	/*if (path_check(token) == -1)
+	if (path_check(token) == -1)
 	{
 		dir_path = find_path(path_array, token);
 		if (dir_path == NULL)
@@ -64,8 +64,9 @@ char **parse_input(char *user_input, char **path_array)
 		}
 		commands[0] = _strdup(dir_path);
 		free(dir_path);
-	}*/
-	commands[0] = _strdup(token);
+	}
+	else
+		commands[0] = _strdup(token);
 	for (i = 1; i < args; i++)
 	{
 		token = strtok(0, "\n");
