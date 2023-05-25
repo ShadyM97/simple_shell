@@ -22,6 +22,7 @@ void fork_wait_exec(char **commands, char **path_array, char **env,
 	if (pid == -1)
 	{
 		perror(NAME);
+		exitcode = 1;
 		_exit(1);
 	}
 	else if (pid == 0)
@@ -33,9 +34,12 @@ void fork_wait_exec(char **commands, char **path_array, char **env,
 			free_array(path_array);
 			free_array(commands);
 			free(user_input);
+			exitcode = 126;
 			_exit(126);
 		}
+		exitcode = 0;
 		_exit(0);
 	}
+	exitcode = 0;
 	wait(&status);
 }
