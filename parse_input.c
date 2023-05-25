@@ -70,7 +70,7 @@ char **parse_input(char *user_input, char **path_array, char *NAME)
 		commands[0] = _strdup(token);
 	for (i = 1; i < args; i++)
 	{
-		token = strtok(0, "\n");
+		token = strtok(0, " \n");
 		commands[i] = _strdup(token);
 	}
 	commands[i] = NULL;
