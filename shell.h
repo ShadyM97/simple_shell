@@ -1,15 +1,36 @@
 #ifndef SHELL_H
 #define SHELL_H
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <signal.h>
 
-extern char **environ;
 
-char **parse_string(char *buffer);
-void shell(void);
-
-#endif /* !SHELL_H */
+int exit_check(char *user_input, char *NAME);
+int blank_check(char *user_input);
+int path_check(char *command);
+int env_check(char *user_input);
+void command_error(char *NAME, char *command);
+void exec_error(char *NAME, char *command);
+void access_error(char *NAME, char *command);
+void exit_error(char *NAME, char *user_input);
+void fork_wait_exec(char **commands, char **path_array,
+		char **env, char *NAME, char *user_input);
+void free_array(char **array);
+int _atoi(char *s);
+void print_number(int n);
+int arg_counter(char *user_input);
+char **parse_input(char *user_input, char **path_array, char *NAME);
+int _strlen(char *str);
+int _strcmp(char *s1, char *s2);
+char *_strdup(char *str);
+int _putchar(char c);
+int get_path_count(char *path);
+char **get_path_array(char **env);
+char *find_path(char **path_array, char *token);
+void print_env(char **env);
+#endif
